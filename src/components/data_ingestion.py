@@ -21,7 +21,7 @@ class DataIngestion:
     def initiate_data_ingestion(self):
         logger.info('Starting data ingestion process')
         try:
-            # Use relative path from project root
+            # Adjust this path based on your file location
             data_path = r'C:\Users\divak\OneDrive\Desktop\ml projects\notebook\data\Stud.csv'
             logger.info(f'Reading dataset from: {data_path}')
             
@@ -47,21 +47,11 @@ class DataIngestion:
             logger.info(f'Test data saved to: {self.config.test_data_path}')
 
             logger.info('Data ingestion completed successfully')
-            
             return (
                 self.config.train_data_path,
                 self.config.test_data_path
             )
 
         except Exception as e:
-            logger.error(f"Error in data ingestion: {str(e)}")
+            logger.error(f"Error occurred in data ingestion: {e}")
             raise CustomException(e, sys)
-
-if __name__ == '__main__':
-    try:
-        ingestion = DataIngestion()
-        train_path, test_path = ingestion.initiate_data_ingestion()
-        logger.info(f"Data ingestion successful. Train: {train_path}, Test: {test_path}")
-    except Exception as e:
-        logger.error(f"Data ingestion failed: {str(e)}")
-        raise
